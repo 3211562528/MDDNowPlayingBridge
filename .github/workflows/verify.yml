@@ -1,0 +1,13 @@
+name: Verify macOS build
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Behavior checks
+        run: zsh verify.sh
+      - name: Build and verify signature
+        run: zsh build.sh
